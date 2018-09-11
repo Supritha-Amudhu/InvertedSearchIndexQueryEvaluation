@@ -36,16 +36,17 @@ public class InvertedIndex {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Map<Integer, String> documentsMap = parseSearchDocument();
-		List<SearchDocument> wordList = new ArrayList<>();
-		Set<SearchDocument> setForStemmer = new HashSet<>();
-		wordList = formStringTokenizer(wordList, documentsMap);
-		setForStemmer = removeDuplicates(wordList);
-		setForStemmer = stemWordList(setForStemmer);
-		Map<TermDocumentFrequency, List<Integer>> finalDocumentsList = removeStopWords(setForStemmer);
+//		InvertedIndex invertedIndex = new InvertedIndex();
+//		Map<Integer, String> documentsMap = invertedIndex.parseSearchDocument();
+//		List<SearchDocument> wordList = new ArrayList<>();
+//		Set<SearchDocument> setForStemmer = new HashSet<>();
+//		wordList = invertedIndex.formStringTokenizer(wordList, documentsMap);
+//		setForStemmer = invertedIndex.removeDuplicates(wordList);
+//		setForStemmer = invertedIndex.stemWordList(setForStemmer);
+//		Map<TermDocumentFrequency, List<Integer>> finalDocumentsList = invertedIndex.removeStopWords(setForStemmer);
 	}
 	
-	private static Map<TermDocumentFrequency, List<Integer>> updateTermDocumentFrequency(Map<TermDocumentFrequency, List<Integer>> finalDictionaryValues) {
+	private Map<TermDocumentFrequency, List<Integer>> updateTermDocumentFrequency(Map<TermDocumentFrequency, List<Integer>> finalDictionaryValues) {
 		Iterator<TermDocumentFrequency> iterator = finalDictionaryValues.keySet().iterator();
 		int i =0;
 	    while (iterator.hasNext()) {
@@ -61,13 +62,14 @@ public class InvertedIndex {
 	}
 	
 	
-	private static Map<TermDocumentFrequency, List<Integer>> removeStopWords(Set<SearchDocument> setForStemmer) {
+	public Map<TermDocumentFrequency, List<Integer>> removeStopWords(Set<SearchDocument> setForStemmer) {
 		Map<TermDocumentFrequency, List<Integer>> finalDictionaryValues = new HashMap<>();
 		List<String> stopListWords = new ArrayList<>(Arrays.asList("the", "is", "at", "of", "on", "and", "a"));
 		TermDocumentFrequency dictionaryKey;
 		ArrayList<Integer> dictionaryValue;
 		for(SearchDocument value : setForStemmer){
-			if(stopListWords.contains(value)){
+			if(stopListWords.contains(value.getSearchDocumentWord())){
+				System.out.println(">>>>>>> Stop word detected! " +value.getSearchDocumentWord());
 				continue;
 			}
 			if(finalDictionaryValues.containsKey(new TermDocumentFrequency(value.getSearchDocumentWord(), 0))){
@@ -92,7 +94,7 @@ public class InvertedIndex {
 		return finalDictionaryValues;
 	}
 	
-	private static Set<SearchDocument> stemWordList(Set<SearchDocument> setForStemmer) {
+	public Set<SearchDocument> stemWordList(Set<SearchDocument> setForStemmer) {
 		Set<SearchDocument> stemmedWordList = new HashSet<>();
 		KrovetzStemmer stemmer = new KrovetzStemmer();
 		String stemmedWord;
@@ -106,7 +108,7 @@ public class InvertedIndex {
 		return stemmedWordList;
 	}
 	
-	private static Set<SearchDocument> removeDuplicates(List<SearchDocument> wordList) {
+	public Set<SearchDocument> removeDuplicates(List<SearchDocument> wordList) {
 		Set<SearchDocument> noDuplicateSet = new HashSet<>();
 		for(int index=0;index<wordList.size();index++){
 			noDuplicateSet.add(wordList.get(index));
@@ -118,7 +120,7 @@ public class InvertedIndex {
 		return noDuplicateSet;
 	}
 	
-	private static String removeNonAlphaNumerics(String wordToBeChecked) {
+	private String removeNonAlphaNumerics(String wordToBeChecked) {
 		Pattern pattern = Pattern.compile("^[A-Za-z0-9]", Pattern.CASE_INSENSITIVE);
 		Matcher matcher;
 		matcher = pattern.matcher(wordToBeChecked);
@@ -131,11 +133,11 @@ public class InvertedIndex {
 		return alphaNumeric;
 	}
 	
-	private static String convertToLowerCase(String wordToBeConverted) {
+	private String convertToLowerCase(String wordToBeConverted) {
 		return wordToBeConverted.toLowerCase();
 	}
 	
-	private static List<SearchDocument> formStringTokenizer(List<SearchDocument> wordList, Map<Integer, String> documentsMap) {
+	public List<SearchDocument> formStringTokenizer(List<SearchDocument> wordList, Map<Integer, String> documentsMap) {
 		Iterator<Entry<Integer, String>> iterator = documentsMap.entrySet().iterator();
 		List<String> splitString = new ArrayList<String>();
 		String individualSplitWord = null;
@@ -167,7 +169,7 @@ public class InvertedIndex {
 		return wordList;
 	}
 	
-	private static Map<Integer, String> parseSearchDocument() {
+	public Map<Integer, String> parseSearchDocument() {
 		Scanner scanner = null;
 		Map<Integer, String> documents = new HashMap<Integer, String>();
 		String line = null;

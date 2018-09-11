@@ -25,7 +25,7 @@ public class BooleanQueryEvaluation {
 		booleanQueryEvaluation.intersect(firstTerm, secondTerm);
 	}
 	
-	private void intersect(List<Integer> firstTerm, List<Integer> secondTerm) {
+	public void intersect(List<Integer> firstTerm, List<Integer> secondTerm) {
 		firstTerm = new ArrayList<>(Arrays.asList(1, 5, 6, 7, 8, 2, 3, 4));
 		secondTerm = new ArrayList<>(Arrays.asList(6, 7, 10, 15, 8, 2));
 		Collections.sort(firstTerm);
