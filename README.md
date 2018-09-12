@@ -21,6 +21,9 @@ Java Files:
 	a. InvertedIndex.java - Class that builds an Inverted Index for any set of inputs.
 	b. BooleanQueryEvaluation.java -  Class that performs an intersection operation on two lists.
 	c. SearchEngine.java - Class that has to be executed, in order for the program to work.
+	
+3. org.lemurproject.kstem - Package:
+	a. This package consists of all files related to the Stemmer algorithm.
 
 Steps to run the program:
 
