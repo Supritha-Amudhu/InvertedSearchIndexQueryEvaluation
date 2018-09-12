@@ -50,20 +50,41 @@ public class SearchEngine {
 					.searchForTerms(searchQueryMap, "input_" + inputId + ".txt");
 			if (searchQueriesIndexMap.size() > 1) {
 				Object[] terms = searchQueriesIndexMap.keySet().toArray();
+				
 				TermDocumentFrequency firstTerm = (TermDocumentFrequency) terms[0];
-				writer.write(firstTerm.getDocumentTerm() + "->"
-						+ searchEngine.stringifyDocList(searchDocumentIndexMap.get(firstTerm)) + "\n");
-				System.out.print(firstTerm.getDocumentTerm() + "->"
-						+ searchEngine.stringifyDocList(searchDocumentIndexMap.get(firstTerm)) + "\n");
 				TermDocumentFrequency secondTerm = (TermDocumentFrequency) terms[1];
-				writer.write(secondTerm.getDocumentTerm() + "->"
-						+ searchEngine.stringifyDocList(searchDocumentIndexMap.get(secondTerm)) + "\n");
-				System.out.print(secondTerm.getDocumentTerm() + "->"
-						+ searchEngine.stringifyDocList(searchDocumentIndexMap.get(secondTerm)) + "\n");
-				List<Integer> intersection = booleanQueryEvaluation.intersect(searchDocumentIndexMap.get(firstTerm),
-						searchDocumentIndexMap.get(secondTerm));
-				writer.write("Intersection List: " + searchEngine.stringifyDocList(intersection) + "\n\n");
-				System.out.print("Intersection List: " + searchEngine.stringifyDocList(intersection) + "\n\n");
+				if (firstTerm != null && secondTerm != null)
+				{
+					writer.write(firstTerm.getDocumentTerm() + "->"
+							+ searchEngine.stringifyDocList(searchDocumentIndexMap.get(firstTerm)) + "\n");
+					System.out.print(firstTerm.getDocumentTerm() + "->"
+							+ searchEngine.stringifyDocList(searchDocumentIndexMap.get(firstTerm)) + "\n");
+					
+					
+					writer.write(secondTerm.getDocumentTerm() + "->"
+							+ searchEngine.stringifyDocList(searchDocumentIndexMap.get(secondTerm)) + "\n");
+					System.out.print(secondTerm.getDocumentTerm() + "->"
+							+ searchEngine.stringifyDocList(searchDocumentIndexMap.get(secondTerm)) + "\n");
+					
+					List<Integer> intersection = booleanQueryEvaluation.intersect(searchDocumentIndexMap.get(firstTerm),
+							searchDocumentIndexMap.get(secondTerm));
+					if (intersection.isEmpty())
+					{
+						writer.write("Intersection List:  No results Found.\n\n");
+						System.out.println("Intersection List:  No results Found.\n\n");
+					}
+					else
+					{
+						writer.write("Intersection List: " + searchEngine.stringifyDocList(intersection) + "\n\n");
+						System.out.print("Intersection List: " + searchEngine.stringifyDocList(intersection) + "\n\n");
+					}
+					
+				}
+				else
+				{
+					writer.write("No results found for: " + queriesMap.get(inputId) + "\n");
+				}
+				
 			}
 		}
 		writer.close();
@@ -77,6 +98,10 @@ public class SearchEngine {
 	 * @return string formatted list of document names.
 	 */
 	private String stringifyDocList(List<Integer> docList) {
+		if (docList == null || docList.size() == 0)
+		{
+			return "[]";
+		}
 		if (docList.size() == 1) {
 			return "[DOC" + docList.get(0) + "]";
 		}

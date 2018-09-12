@@ -22,6 +22,11 @@ public class BooleanQueryEvaluation {
 	 * @return intersection of two lists.
 	 */
 	public List<Integer> intersect(List<Integer> firstTerm, List<Integer> secondTerm) {
+		if ((firstTerm == null || firstTerm.size() == 0) 
+				|| (secondTerm == null || secondTerm.size() == 0) )
+		{
+			return Collections.emptyList();
+		}	
 		Collections.sort(firstTerm);
 		Collections.sort(secondTerm);
 		return termsIntersection(firstTerm, secondTerm);
