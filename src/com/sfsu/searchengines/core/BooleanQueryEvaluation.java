@@ -10,29 +10,29 @@ import java.util.List;
 
 /**
  * @author supritha
- *
+ * This class performs Query Evaluation.
  */
 public class BooleanQueryEvaluation {
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		List<Integer> firstTerm = new ArrayList<>(Arrays.asList(1, 5, 6, 7, 8, 2, 3, 4));
-		List<Integer> secondTerm = new ArrayList<>(Arrays.asList(6, 7, 10, 15, 8, 2));
-		BooleanQueryEvaluation booleanQueryEvaluation = new BooleanQueryEvaluation();
-		booleanQueryEvaluation.intersect(firstTerm, secondTerm);
-	}
 	
-	public void intersect(List<Integer> firstTerm, List<Integer> secondTerm) {
-		firstTerm = new ArrayList<>(Arrays.asList(1, 5, 6, 7, 8, 2, 3, 4));
-		secondTerm = new ArrayList<>(Arrays.asList(6, 7, 10, 15, 8, 2));
+	/**
+	 * This method returns the intersection of the two given lists. The lists are sorted before 
+	 * performing intersection.
+	 * @param firstTerm
+	 * @param secondTerm
+	 * @return intersection of two lists.
+	 */
+	public List<Integer> intersect(List<Integer> firstTerm, List<Integer> secondTerm) {
 		Collections.sort(firstTerm);
 		Collections.sort(secondTerm);
-		termsIntersection(firstTerm, secondTerm);
+		return termsIntersection(firstTerm, secondTerm);
 	}
 
+	/**
+	 * This method performs the intersection of two sorted lists.
+	 * @param firstTerm - document list for first search term
+	 * @param secondTerm - document list for second search term
+	 * @return Intersection of the two lists.
+	 */
 	private List<Integer> termsIntersection(List<Integer> firstTerm, List<Integer> secondTerm) {
 		List<Integer> intersectedTerm = new ArrayList<>();
 		int firstIndex=0;
@@ -53,7 +53,6 @@ public class BooleanQueryEvaluation {
 				secondIndex++;
 			}
 		}
-//		System.out.println(intersectedTerm);
 		return intersectedTerm;
 	}
 }

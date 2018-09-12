@@ -8,10 +8,10 @@ import java.util.List;
 
 /**
  * @author Supritha Amudhu
- *
+ * Object for search words.
  */
 
-public class SearchDocument {
+public class SearchWord {
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -35,7 +35,7 @@ public class SearchDocument {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SearchDocument other = (SearchDocument) obj;
+		SearchWord other = (SearchWord) obj;
 		if (searchDocumentNumber != other.searchDocumentNumber)
 			return false;
 		if (searchDocumentWord == null) {
@@ -52,7 +52,7 @@ public class SearchDocument {
 	 * Constructor to create a SearchDocument object
 	 * @param blogURL
 	 */
-	public SearchDocument(String searchDocumentWord, int searchDocumentNumber) {
+	public SearchWord(String searchDocumentWord, int searchDocumentNumber) {
 		this.searchDocumentWord = searchDocumentWord; 
 		this.setSearchDocumentNumber(searchDocumentNumber);
 	}

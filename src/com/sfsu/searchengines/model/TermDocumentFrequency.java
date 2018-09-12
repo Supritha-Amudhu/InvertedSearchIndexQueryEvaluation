@@ -5,7 +5,7 @@ package com.sfsu.searchengines.model;
 
 /**
  * @author supritha
- *
+ * Object for searchTerm and documentFrequency.
  */
 public class TermDocumentFrequency {
 	
@@ -28,8 +28,6 @@ public class TermDocumentFrequency {
 		if (getClass() != obj.getClass())
 			return false;
 		TermDocumentFrequency other = (TermDocumentFrequency) obj;
-		if (documentFrequency != other.documentFrequency)
-			return false;
 		if (documentTerm == null) {
 			if (other.documentTerm != null)
 				return false;

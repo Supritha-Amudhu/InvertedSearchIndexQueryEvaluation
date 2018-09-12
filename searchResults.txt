@@ -1,0 +1,15 @@
+Input Query: asus AND google
+asu->[DOC1, DOC3, DOC8]
+google->[DOC1, DOC7, DOC8]
+Intersection List: [DOC1, DOC8]
+
+Input Query: screen AND bad
+bad->[DOC3]
+screen->[DOC8, DOC6, DOC3, DOC2, DOC1]
+Intersection List: [DOC3]
+
+Input Query: great AND tablet
+tablet->[DOC10, DOC9, DOC2, DOC6, DOC4, DOC3]
+great->[DOC10, DOC6, DOC3, DOC2, DOC1]
+Intersection List: [DOC2, DOC3, DOC6, DOC10]
+
