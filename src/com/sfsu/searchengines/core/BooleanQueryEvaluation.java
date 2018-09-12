@@ -53,7 +53,7 @@ public class BooleanQueryEvaluation {
 				secondIndex++;
 			}
 		}
-		System.out.println(intersectedTerm);
+//		System.out.println(intersectedTerm);
 		return intersectedTerm;
 	}
 }

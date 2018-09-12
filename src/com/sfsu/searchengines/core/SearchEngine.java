@@ -24,12 +24,12 @@ public class SearchEngine {
 	 */
 	public static void main(String[] args) {
 		SearchEngine searchEngine = new SearchEngine();
-		int invertedIndex = 0;
-		int processQueries = 1;
-		Map<TermDocumentFrequency, List<Integer>> invertedIndexMap = searchEngine.searchForTerms(invertedIndex);
-		Map<TermDocumentFrequency, List<Integer>> processQueriesMap = searchEngine.searchForTerms(processQueries);
+		int searchDocumentIndex = 0;
+		int searchQueriesQueries = 1;
+		Map<TermDocumentFrequency, List<Integer>> searchDocumentIndexMap = searchEngine.searchForTerms(searchDocumentIndex);
+		Map<TermDocumentFrequency, List<Integer>> searchQueriesIndexMap = searchEngine.searchForTerms(searchQueriesQueries);
 		BooleanQueryEvaluation booleanQueryEvaluation = new BooleanQueryEvaluation();
-		booleanQueryEvaluation.intersect(processQueriesMap.get(new TermDocumentFrequency("asus", 0)), processQueriesMap.get(new TermDocumentFrequency("google", 0)));
+		booleanQueryEvaluation.intersect(searchQueriesIndexMap.get(new TermDocumentFrequency("asus", 0)), searchQueriesIndexMap.get(new TermDocumentFrequency("google", 0)));
 	}
 
 	

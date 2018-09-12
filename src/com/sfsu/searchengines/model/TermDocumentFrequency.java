@@ -72,4 +72,9 @@ public class TermDocumentFrequency {
 	public void setDocumentFrequency(int documentFrequency) {
 		this.documentFrequency = documentFrequency;
 	}
+	
+	@Override
+	public String toString() {
+		return this.documentTerm + " {" + this.documentFrequency + "}";
+	}
 }

@@ -47,17 +47,17 @@ public class InvertedIndex {
 	}
 	
 	private Map<TermDocumentFrequency, List<Integer>> updateTermDocumentFrequency(Map<TermDocumentFrequency, List<Integer>> finalDictionaryValues) {
+//		System.out.println("Final dict: " + finalDictionaryValues);
 		Iterator<TermDocumentFrequency> iterator = finalDictionaryValues.keySet().iterator();
 		int i =0;
 	    while (iterator.hasNext()) {
 	    	i++;
 	    	TermDocumentFrequency keyValue = (TermDocumentFrequency)iterator.next();
-	    	System.out.println("Update to size: "+finalDictionaryValues.get(keyValue).size());
+//	    	System.out.println("Update to size: "+finalDictionaryValues.get(keyValue).size());
 	    	keyValue.setDocumentFrequency(finalDictionaryValues.get(keyValue).size());
-	        System.out.println(keyValue.getDocumentTerm() + " " + keyValue.getDocumentFrequency() + " = " + finalDictionaryValues.get(keyValue));
-	        iterator.remove(); // avoids a ConcurrentModificationException
+//	        System.out.println(keyValue.getDocumentTerm() + " " + keyValue.getDocumentFrequency() + " = " + finalDictionaryValues.get(keyValue));
 	    }
-	    System.out.println(i);
+//	    System.out.println(i);
 		return finalDictionaryValues;
 	}
 	
@@ -69,7 +69,7 @@ public class InvertedIndex {
 		ArrayList<Integer> dictionaryValue;
 		for(SearchDocument value : setForStemmer){
 			if(stopListWords.contains(value.getSearchDocumentWord())){
-				System.out.println(">>>>>>> Stop word detected! " +value.getSearchDocumentWord());
+//				System.out.println(">>>>>>> Stop word detected! " +value.getSearchDocumentWord());
 				continue;
 			}
 			if(finalDictionaryValues.containsKey(new TermDocumentFrequency(value.getSearchDocumentWord(), 0))){
@@ -91,6 +91,7 @@ public class InvertedIndex {
 //	    }
 //	    System.out.println(i);
 		finalDictionaryValues = updateTermDocumentFrequency(finalDictionaryValues);
+//		System.out.println(">>>>>>>>>>>>>>>>>>>>>" +finalDictionaryValues);
 		return finalDictionaryValues;
 	}
 	
@@ -99,12 +100,12 @@ public class InvertedIndex {
 		KrovetzStemmer stemmer = new KrovetzStemmer();
 		String stemmedWord;
 		for(SearchDocument value : setForStemmer){
-			System.out.println("Stemmed value: " +stemmer.stem(value.getSearchDocumentWord()));
+//			System.out.println("Stemmed value: " +stemmer.stem(value.getSearchDocumentWord()));
 			stemmedWord = stemmer.stem(value.getSearchDocumentWord());
 			stemmedWordList.add(new SearchDocument(stemmedWord, value.getSearchDocumentNumber()));
 		}
-		System.out.println("Count of non-stemmed words: "+setForStemmer.size());
-		System.out.println("Count of stemmed words: "+stemmedWordList.size());
+//		System.out.println("Count of non-stemmed words: "+setForStemmer.size());
+//		System.out.println("Count of stemmed words: "+stemmedWordList.size());
 		return stemmedWordList;
 	}
 	
@@ -115,7 +116,7 @@ public class InvertedIndex {
 //			System.out.println(wordList.get(i).getSearchDocumentNumber() + " -----> " + wordList.get(i).getSearchDocumentWord());
 		}
 		for(SearchDocument value : noDuplicateSet){
-            System.out.println(value.getSearchDocumentWord() + " -----> " + value.getSearchDocumentNumber());
+//            System.out.println(value.getSearchDocumentWord() + " -----> " + value.getSearchDocumentNumber());
 		}
 		return noDuplicateSet;
 	}
